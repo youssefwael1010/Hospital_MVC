@@ -1,0 +1,40 @@
+﻿@model Day2.Task1.Models.Department
+
+@{
+    ViewData["Title"] = "Edit Department";
+}
+
+<div class="page-heading">
+    <div>
+        <h1>Edit department</h1>
+        <p>Update the details for <strong>@Model.Name</strong>.</p>
+    </div>
+</div>
+
+<div class="form-card narrow-form">
+    <form asp-action="Edit" method="post">
+        @Html.AntiForgeryToken()
+        <input asp-for="DepartmentId" type="hidden" />
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Department name</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-2">
+            <label asp-for="Description" class="form-label">Description</label>
+            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-actions d-flex gap-2 mt-4">
+            <a asp-action="AllDepartments" class="btn btn-light border">Cancel</a>
+            <button type="submit" class="btn btn-primary px-4">Save Changes</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

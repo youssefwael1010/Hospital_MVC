@@ -1,0 +1,28 @@
+﻿@model Day2.Task1.Models.Doctor
+
+<div class="container mt-4">
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h2 class="card-title text-success">Dr. @Model.Name</h2>
+            <hr />
+            <dl class="row mb-0">
+                <dt class="col-sm-3">Age :</dt>
+                <dd class="col-sm-9">@Model.Age</dd>
+
+                <dt class="col-sm-3">Phone :</dt>
+                <dd class="col-sm-9">@Model.Phone</dd>
+
+                <dt class="col-sm-3">Email :</dt>
+                <dd class="col-sm-9">@Model.Email</dd>
+
+                <dt class="col-sm-3">Salary :</dt>
+                <dd class="col-sm-9">@Model.Salary.ToString("C")</dd>
+
+                <dt class="col-sm-3">Department :</dt>
+                <dd class="col-sm-9">@(Model.Department?.Name ?? "Not Assigned")</dd>
+            </dl>
+        </div>
+    </div>
+
+    <a asp-action="AllDoctors" class="btn btn-secondary">Back to List</a>
+</div>

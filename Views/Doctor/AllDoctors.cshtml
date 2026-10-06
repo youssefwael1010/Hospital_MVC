@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Day2.Task1.Models.Doctor>
+
+<div class="container mt-4">
+    <div class="row mb-3 align-items-center">
+        <div class="col">
+            <h2>Doctors List</h2>
+            <a asp-action="Add" class="btn btn-success align-content-end"> Add Doctor</a>
+        </div>
+    </div>
+
+    <table class="table table-striped table-bordered shadow-sm">    
+        <thead class="table-success">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>Department</th>
+                <th class="text-center" styles="width: 150px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var doc in Model)
+                {
+                    <tr>
+                        <td class="align-middle fw-bold">Dr. @doc.Name</td>
+                        <td class="align-middle">@doc.Age</td>
+                        <td class="align-middle">@doc.Phone</td>
+                        <td class="align-middle">@doc.Email</td>
+                        <td class="align-middle">@doc.Salary.ToString("C")</td>
+                        <td class="align-middle">@(doc.Department?.Name ?? "No Department")</td>
+                        <td class="text-center align-middle">
+                            <a asp-action="Details" asp-route-id="@doc.DoctorId" class="btn btn-success btn-sm">Details</a>
+                            <a asp-action="Edit" asp-route-id="@doc.DoctorId" class="btn btn-sm btn-info">Edit</a>
+                            <form asp-controller="Doctor" asp-action="Delete" asp-route-id="@doc.DoctorId" method="post" class="d-inline" onsubmit="return confirm('Delete this doctor?');">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                <td colspan="7" class="text-center text-muted py-3">No doctors added yet .</td>
+                </tr>
+            }
+
+          
+
+        </tbody>
+    </table>
+
+    <div class="mb-4">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary rounded-pill px-3 shadow-sm">
+            <i class="fas fa-arrow-left me-2"></i> Back to Home
+        </a>
+    </div>
+
+</div>

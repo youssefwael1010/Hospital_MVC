@@ -1,0 +1,36 @@
+﻿@model Day2.Task1.Models.Department
+
+<div class="container mt-4">
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h2 class="card-title text-primary">@Model.Name</h2>
+            <hr />
+            <p class="card-text"><strong>Description</strong> @Model.Description</p>
+        </div>
+    </div>
+    
+    <h4 class="mb-3">Doctors in this Department</h4>
+
+    @if (@Model.Doctors != null && @Model.Doctors.Any())
+    {
+        <ul class="list-group mb-4 shadow-sm">
+            @foreach (var doc in Model.Doctors)
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                    <div>
+                        <span class="fw-bold">Dr. @doc.Name</span>
+                        <span class="text-muted ms-3">(@doc.Email)</span>
+                    </div>
+                    <span class="badge bg-secondary">Phone: @doc.Phone</span>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+         <div class="alert alert-secondary mb-4">No Doctors registerd inthis department yet.</div>
+    }
+
+      <a asp-action="AllDepartments" class="btn btn-secondary">Back to List</a>
+
+</div>
